@@ -1,5 +1,5 @@
 {
-  "name": "raspberry-pi-mjpeg-server",
+  "name": "Pi-mjpeg-server",
   "version": "1.0.0",
   "description": "Node.js mjpeg streaming server for the Raspberry PI camera module",
   "main": "index.js",
@@ -31,7 +31,7 @@
   "dependencies": {
     "chokidar": "^1.6.0",
     "commander": "^2.9.0",
-    "ip":"^1.1.4",
+    "ip": "^1.1.4",
     "pubsub-js": "~1.5.2"
   }
 }

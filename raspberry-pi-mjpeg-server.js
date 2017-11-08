@@ -30,9 +30,9 @@ program.on('--help', function(){
 var port = program.port || 8080,
     width = program.width || 640,
     height = program.height || 480,
-    timeout = program.timeout || 250,
-    quality = program.quality || 75,
-    tmpFolder = os.tmpdir(),
+    timeout = program.timeout || 66.7,
+    quality = program.quality || 55,
+    tmpFolder = __dirname,
     tmpImage = pjson.name + '-image.jpg',
     localIpAddress = localIp.address(),
     boundaryID = "BOUNDARY";
@@ -49,7 +49,7 @@ var server = http.createServer(function(req, res) {
         res.write('<html>');
         res.write('<head><title>' + pjson.name + '</title><meta charset="utf-8" /></head>');
         res.write('<body>');
-        res.write('<img src="image.jpg" />');
+        res.write('<img src="liveImage.jpg" />');
         res.write('</body>');
         res.write('</html>');
         res.end();
@@ -63,7 +63,8 @@ var server = http.createServer(function(req, res) {
     };
 
     // for image requests, return a HTTP multipart document (stream) 
-    if (req.url.match(/^\/.+\.jpg$/)) {
+    if (req.url.match(/lliveImage.jpg/)) {
+			console.log(req.url);
 
         res.writeHead(200, {
             'Content-Type': 'multipart/x-mixed-replace;boundary="' + boundaryID + '"',
@@ -78,7 +79,7 @@ var server = http.createServer(function(req, res) {
         //
         var subscriber_token = PubSub.subscribe('MJPEG', function(msg, data) {
 
-            //console.log('sending image');
+            console.log('sending image');
 
             res.write('--' + boundaryID + '\r\n')
             res.write('Content-Type: image/jpeg\r\n');
